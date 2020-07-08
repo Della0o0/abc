@@ -1,0 +1,108 @@
+
+
+/*主体开始*/
+
+/* 餐厅历史开始 */
+.history{
+    // margin-top:-220px;
+    // margin-bottom: 580px;
+    // overflow: hidden;
+    display:none;
+    img{
+        width:650px;
+    }
+    article{
+        width:450px;
+        p{
+            font-family: "Open Sans", cursive;
+            margin-top: 26px;
+        }
+    }
+}
+/* 餐厅历史结束 */
+
+
+/* why choose开始 */
+.choose{
+    // margin-top: -200px;
+    margin-bottom: 160px;
+    title{
+        margin-top: 100px;
+    }
+    >section{
+        margin-top: 80px;
+        >img{
+            width:510px;
+            display: none;
+        }
+        >article{
+            display: none;
+        }
+        h2{
+            width:510px;
+            padding: 16px;
+            margin-bottom: 20px;
+            position: relative;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+    article{
+        width:500px;
+        span{
+            position: absolute;
+            font-size: 16px;
+            font-weight: 100;
+            right:8px;
+        }
+        h2{
+            cursor: pointer;
+            transition: all 1s;
+        }
+        // p{
+        //     display:none;
+        // }
+        // .show{
+            
+        //     h2{
+        //         color:#fdb44b;
+        //     }
+        //     p{
+        //         display:block;
+        //     }
+        // }
+    }
+}
+
+/* why choose结束 */
+/* chef 开始 */
+.chef {
+    article{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-top: 126px;
+    div{
+        width:255px;
+        text-align: justify;
+        img{
+            width:255px;
+        }
+        h2{
+            padding:16px 0;
+        }
+        h4{
+            font-size: 18px;
+            color:#ccc;
+            padding-bottom:22px;
+        }
+    }
+    }
+    // .title{
+    //     @include til;
+    // }
+}
+.chef_wrap{
+    display:none;
+}
+
+/* chef 结束 */

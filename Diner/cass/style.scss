@@ -1,0 +1,208 @@
+/*style.scss 描述公共部分（页头、菜单、banner、结尾）的样式*/
+/*页头开始*/
+$wt:#fff;
+.site-header {
+  width: 100%;
+  padding: 26px 30px;
+  position: absolute;
+  z-index: 100;
+  color: $wt;
+  font-size: 30px;
+  .iconfont {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .home {
+    text-align: center;
+    >a{
+      color: $wt;
+      display: inline-block;
+      padding: 17px 20px;
+      font-size: 30px;
+      border: 2px solid $wt;
+    }
+    >a:hover{
+      text-decoration: none;
+    }
+    
+  }
+  .site-nav-toggle{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 21;
+    display: block !important;
+    float: right;
+    display: none;
+    border-bottom: none !important;
+    >i{
+      width: 30px;
+      height: 2px;
+      font: bold 14px/.4 Helvetica;
+      text-transform: uppercase;
+      text-indent: -55px;
+      position: absolute;
+      display: inline-block;
+      zoom: 1;
+      left: 0px;
+      background-color: $wt;
+      transition: all .2s ease-out;
+    }
+    >i:nth-of-type(1){
+      top: 0px;
+    }
+    >i:nth-of-type(1){
+      top: 7px;
+    }
+    >i:nth-of-type(3){
+      top: 14px;
+    }
+  }
+}
+/*页头结束*/
+/*banner开始*/
+.bgc{
+  background-size: cover;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 700px;
+  height:100vh;
+  color: #fff !important;
+  .home_heading{
+    font-size: 50px;
+    line-height: 1.5;
+    color:white;
+    font-weight: 300;
+    font-family: "Playfair Display", Arial, sans-serif;
+    margin-top: 200px;
+  }
+}
+/*banner结束*/
+/*菜单开始*/
+.menu_back{
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  position: fixed;
+  display: none;
+  z-index: 99;
+  >ul{
+    text-align: center;
+    margin-top: 250px;
+    >li{
+      margin-bottom: 20px;
+      >a{
+        color: #fff;
+        font-size: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+}
+/*菜单结束*/
+/*页尾开始*/
+.site-footer {
+  margin-top: 100px;
+  background: url(../img/curve_line.svg) repeat-x top left;
+  padding: 7em 0;
+  .footer-widget{
+    p{
+      margin-bottom: 30px;
+      color: #999;
+      font-size: 16px;
+      line-height: 30px;
+    }
+    h3 {
+      font-size: 18px;
+       margin-bottom: 20px;
+       color: #000;
+    }
+    >ul>li{
+      list-style: disc;
+      margin-bottom: 10px;
+      >a{
+        color: #FDB44B;
+      }
+    }
+    .form-group{
+      position: relative;
+      margin-bottom: 30px;
+    }
+    .form-group>input{
+      border: none;
+      border-radius: 0;
+    }
+    .form-group>input[type='text']{
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #F2F2F2;
+      color: #333;
+    }
+    .form-group>input[type='submit']{
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #FDB44B;
+    }
+    .contact-email{
+      color: #FDB44B;
+    }
+  } 
+  
+}
+/*页尾结束*/
+
+
+@keyframes slideDown{
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+ 100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+/* 精品项目动画 */
+.speed1{
+  animation:slideDown .5s;
+}
+.speed2{
+  animation:slideDown 1s;
+}
+.speed3{
+  animation:slideDown 1.5s;
+}
+.speed4{
+  animation:slideDown 2s;
+}
+.speed5{
+  animation:slideDown 4s;
+}
+
+.title{
+  width: 700px;
+  margin: 60px auto;
+  text-align: center;
+  display: none;
+}
+
+.bgc{
+  h1{
+    margin-top: 200px;
+    padding-left: 250px;
+  }
+  p{
+    width: 1000px;
+    padding-left: 250px;
+  }
+}

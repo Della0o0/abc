@@ -1,0 +1,99 @@
+/* CSS样式初始化*/
+
+/* 指定当前CSS文件 ,编码格式是UTF-8 */
+@charset "utf-8";
+
+/* 清除浏览器默认的margin和padding 不使用通配符*,解决了通配符*效率低的问题*/
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,img,td,tr{
+	margin: 0;padding: 0;
+}
+
+img,input,button,textarea{
+	border: none;
+	margin: 0;
+	padding: 0;
+	outline-style: none;
+}
+p{
+	font-weight: 300;
+}
+ul,ol{
+	list-style: none;
+}
+
+input{
+	font-family: "SimSun","宋体";
+}
+
+select,input,textarea{
+	font-size:12px;
+	margin: 0;
+}
+
+textarea{
+	resize: none;
+}
+
+img,input{
+	border: 0;
+	vertical-align: middle;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+body{
+	/* 将整个页面的字体,默认重置*/
+	font:16px "Open Sans",arial,verdana,"SimSun";
+	line-height: 26px;
+	color: #999;
+	background:#fff;
+}
+
+.clearfix::before,
+.clearfix::after{
+	content: "";
+	display: table;
+}
+.clearfix::after{
+	clear: both;
+}
+/* 兼容IE67 */
+.clearfix{
+	*zoom:1;
+}
+
+a{
+	color: #666;
+	text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6{
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 100%;
+}
+h2{
+	font-family: "Playfair Display", Arial;
+	font-size: 28px;
+    color:#333;
+    line-height: 38px;
+}
+s,i,em{
+	font-style: normal;
+	text-decoration: none;
+}
+
+.fl{
+	float: left;
+}
+
+.fr{
+	float: right;
+}
+
+.w{
+	width: 1140px;
+	margin: 0 auto;
+}

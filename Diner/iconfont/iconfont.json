@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8233123",
+      "name": "twiter",
+      "font_class": "twitter",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "11665381",
+      "name": "web-Facebook",
+      "font_class": "Facebook",
+      "unicode": "e50f",
+      "unicode_decimal": 58639
+    },
+    {
+      "icon_id": "13891167",
+      "name": "ins",
+      "font_class": "ins",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}
