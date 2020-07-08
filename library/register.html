@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/register.css" />
+  </head>
+  <body>
+    <h1 class="head">
+      图书管理系统
+    </h1>
+    <div class="login">
+      <h1>注&nbsp;&nbsp;册</h1>
+      <form action="./php/library.php" method="POST">
+        <div>
+          <input type="text" name="name" placeholder="用户名" id="user" />
+          <span>此用户名已被占用</span>
+        </div>
+        <div>
+          <input type="text" name="pwd" placeholder="密码" />
+        </div>
+        <p>
+          是否成为VIP:&nbsp;&nbsp;是<input
+            type="radio"
+            name="vip"
+            value="1"
+          />&nbsp;&nbsp;否<input type="radio" name="vip" value="0" checked />
+        </p>
+
+        <input type="submit" value="注&nbsp;册" />
+        <input type="hidden" name="hide" value="3" />
+      </form>
+      <a href="./login.html">返回登录</a>
+    </div>
+
+    <script>
+      window.onload = function () {
+        var name = document.querySelector("#user");
+        var form = document.querySelector("form");
+        name.onblur = function (e) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "./php/library.php?hide=4");
+          xhr.send(null);
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              var arr = JSON.parse(xhr.responseText);
+              for (var i = 0; i < arr.length; i++) {
+                if (name.value == arr[i][0]) {
+                  name.nextElementSibling.style.display = "block";
+                  name.isSubmit = false;
+                  return false;
+                }
+              }
+              name.nextElementSibling.style.display = "none";
+              name.isSubmit = true;
+            }
+          };
+          form.onsubmit = function () {
+            console.log(name.isSubmit);
+            if (!name.isSubmit) {
+              return false;
+            }
+          };
+        };
+      };
+    </script>
+  </body>
+</html>

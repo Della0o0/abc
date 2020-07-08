@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
+  <body>
+    <h1 class="head">图书管理系统</h1>
+    <div class="login">
+      <h1>登&nbsp;&nbsp;录</h1>
+      <form action="./php/library.php" method="GET">
+        <div>
+          <input type="text" name="name" placeholder="用户名" />
+        </div>
+        <div>
+          <input type="text" name="pwd" placeholder="密码" />
+        </div>
+        <span class="notice">用户名或者密码错误，请重新登录</span>
+        <input type="submit" value="登&nbsp;录" />
+        <input type="hidden" name="hide" value="2" />
+      </form>
+      <a href="./register.html">立即注册</a>
+    </div>
+    <script>
+      window.onload = function () {
+        var notice = document.querySelector(".notice");
+        // var isLogin = location.search.split("?")[1].split("=")[1];
+        console.log(location.search.indexOf("isLogin=false"));
+        if (location.search.indexOf("isLogin=false") != -1) {
+          notice.style.opacity = "1";
+        } else {
+          notice.style.opacity = "0";
+        }
+      };
+      
+    </script>
+  </body>
+</html>

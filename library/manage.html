@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/manage.css" />
+  </head>
+  <body>
+    <h1 class="head w">
+      图书管理系统
+      <div class="loginCon"></div>
+    </h1>
+    <div class="main w">
+      <div class="menu">
+        <!-- <a href="./index.html">首页</a>
+        <a href="./html/add.html">新增</a> -->
+        <a href="javascript:void(0)">首页</a>
+        <a href="javascript:void(0)">新增</a>
+      </div>
+      <!-- 这里是图书展示区域 -->
+      <ul class="con books"></ul>
+      <!-- 这里是新增界面 -->
+      <div class="con register">
+        <h1>新增书籍</h1>
+        <form action="./php/library.php" method="post">
+          <p>书名<input type="text" name="title" /></p>
+          <p>作者<input type="text" name="author" /></p>
+          <p>单价<input type="text" name="price" /></p>
+          <p>数量<input type="text" name="amount" /></p>
+          <p>简介<input type="text" name="synopsis" /></p>
+          <p>内容<input type="text" name="content" /></p>
+          <p>
+            图片<input type="file" id="pic" /><input type="hidden" name="img" />
+          </p>
+          <p>
+            VIP书籍：是<input
+              type="radio"
+              value="1"
+              name="vip"
+              checked
+            />否<input type="radio" value="0" name="vip" />
+          </p>
+          <input type="submit" />
+          <input type="hidden" name="hide" value="1" />
+        </form>
+      </div>
+      <!-- <div class="updateCon">
+          
+      </div> -->
+    </div>
+
+    <script>
+      // 获取图书的src
+      var pic = document.querySelector("#pic");
+      var img = document.querySelector("input[name='img']");
+      pic.onchange = function () {
+        // var imgSrc = "./img/" + pic.value.split("\\")[2];
+        // pic.value = "./img/" + pic.value.split("\\")[2];
+        // pic.value =
+        img.value = "./img/" + pic.value.split("\\")[2];
+      };
+
+      // 左侧选项卡
+      var preA, preCon;
+      var as = document.querySelectorAll(".menu>a");
+      var pleaseLogin = document.querySelector(".pleaseLogin");
+      var books = document.querySelector(".books");
+      var register = document.querySelector(".register");
+      var loginBtn = document.querySelector(".loginBtn");
+      var registerBtn = document.querySelector(".register");
+
+      changeMenu(as[0]);
+      for (var i = 0; i < as.length; i++) {
+        as[i].addEventListener("click", clickHandler);
+      }
+
+      function clickHandler(e) {
+        changeMenu(e.target);
+        if (e.target.innerHTML == "首页") {
+          showBook();
+          changeMain(books);
+        } else if (e.target.innerHTML == "新增") {
+          changeMain(register);
+        }
+      }
+
+      function changeMenu(a) {
+        if (preA) {
+          preA.style.backgroundColor = "blanchedalmond";
+        }
+        a.style.backgroundColor = "#fff";
+        preA = a;
+      }
+      function changeMain(con) {
+        if (preCon) {
+          preCon.style.display = "none";
+        }
+        con.style.display = "block";
+        preCon = con;
+      }
+
+      function showBook() {
+        books.innerHTML = "";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "./php/library.php?hide=0");
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(JSON.parse(xhr.responseText));
+            // console.log(xhr.responseText);
+            var arr = JSON.parse(xhr.responseText);
+            if (sessionStorage["vip"] == "0") {
+              arr = arr.filter(function (item) {
+                return item.vip == "0";
+              });
+            }
+            console.log(arr);
+            // var books = document.querySelector(".books");
+            for (var i = 0; i < arr.length; i++) {
+              var li = document.createElement("li");
+              li.id = arr[i]["id"];
+              if (arr[i].vip == "1") {
+                li.innerHTML = `<img src=${arr[i].img} alt="" class="pic"><span class="title">${arr[i].title}</span><img src="./img/vip.jpg" class="vip" /><span class="price">&yen${arr[i].price}</span><p class="synopsis">${arr[i].synopsis}</p><a href="./html/update.html" class="update">修改</a><a href="javascript:void(0)" class="delete">删除</a>`;
+              } else if (arr[i].vip == "0") {
+                li.innerHTML = `<img src=${arr[i].img} alt="" class="pic"><span class="title">${arr[i].title}</span><span class="price">&yen${arr[i].price}</span><p class="synopsis">${arr[i].synopsis}</p><a href="javascript:void(0)" class="update">修改</a><a href="javascript:void(0)" class="delete">删除</a>`;
+              }
+              books.appendChild(li);
+            }
+            // 删除功能
+            var dels = document.querySelectorAll(".delete");
+            for (var i = 0; i < dels.length; i++) {
+              dels[i].onclick = function (e) {
+                var res = confirm("确认要删除吗?");
+                if (res) {
+                  console.log("object");
+                  var xhr1 = new XMLHttpRequest();
+                  xhr1.open(
+                    "POST",
+                    "./php/library.php?hide=5&id=" + e.target.parentNode.id
+                  );
+                  xhr1.send(null);
+                  xhr1.onreadystatechange = function () {
+                    if (xhr1.readyState == 4 && xhr1.status == 200) {
+                      if (xhr1.responseText == "1") {
+                        var evt = new Event("click");
+                        as[0].dispatchEvent(evt);
+                      }
+                    }
+                  };
+                }
+              };
+            }
+            // 修改功能
+            var updates = document.querySelectorAll(".update");
+            for (var i = 0; i < updates.length; i++) {
+              updates[i].onclick = function (e) {
+                
+                
+              };
+            }
+          }
+        };
+      }
+      // 页面加载完成后执行
+      window.onload = function () {
+        // 登录后显示名字
+        var loginCon = document.querySelector(".loginCon");
+        if (sessionStorage["vip"] == 1) {
+          loginCon.innerHTML = `<img src='./img/vipUser.png'>${sessionStorage["name"]},欢迎您<a href='./index.html'>退出登录</a>`;
+        } else {
+          loginCon.innerHTML = `${sessionStorage["name"]},欢迎您<a href='./index.html'>退出登录</a>`;
+        }
+        // 触发按钮===渲染页面
+        var evt = new Event("click");
+        as[0].dispatchEvent(evt);
+      };
+    </script>
+  </body>
+</html>
